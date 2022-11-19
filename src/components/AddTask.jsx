@@ -11,7 +11,13 @@ const AddTask = ( {addTask_atr}) => {
     }
 
     const handleAddTaskClick = () => {
-        addTask_atr(inputData)
+        if (inputData == ""){
+            alert("Você não informou o nome da tarefa.")
+        }
+        else{
+            addTask_atr(inputData)
+            setInputData("");  // limpa o input quando add task.
+        }
     }
 
     return (
@@ -23,7 +29,7 @@ const AddTask = ( {addTask_atr}) => {
                 type="text"
             />
             <div className='add_task_button_container'>
-                <Btn_add fc_clique={handleAddTaskClick}>Criança do btn aqui</Btn_add>
+                <Btn_add fc_clique={handleAddTaskClick}>Adicionar uma nova tarefa</Btn_add>
             </div>
         </div> 
     );
