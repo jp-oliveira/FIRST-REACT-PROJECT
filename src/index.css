@@ -1,3 +1,13 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/*
+resetar os estilos. pra que colocar isso em cima? porque os elementos por padrão têm
+margem. Por isso, as vezes ficam com espaçamentos indesejados.
+*/
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

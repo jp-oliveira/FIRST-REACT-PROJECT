@@ -7,7 +7,11 @@ const Tasks_comp = ( {tasks_atr, task_arg_click, task_rmv_click} ) => {
         <React.Fragment>
             {tasks_atr.map( 
                 (cada_task) => (
-                <Task remove_click={task_rmv_click} task_click={task_arg_click} task_un={cada_task}/>
+                <Task
+                    key={cada_task.id}
+                    remove_click={task_rmv_click} 
+                    task_click={task_arg_click} 
+                    task_un={cada_task}/>
                 )
             )}
         </React.Fragment>

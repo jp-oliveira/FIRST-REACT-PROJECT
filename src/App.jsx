@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import Tasks_comp from "./components/Tasks";
-import {v4 as uuidv4} from "uuid";
+import React, { useState, useEffect } from 'react';
+import {v4 as uuidv4}      from "uuid";
+import axios from "axios";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
+
 import "./App.css";
-import AddTask from './components/AddTask';
-import Header from './components/Header';
+
+import Tasks_comp   from "./components/Tasks";
+import AddTask      from './components/AddTask';
+import Header       from './components/Header';
+import TaskDetails  from './components/TaskDetails';
 
 const App = () => {
   const [tasks_var, setTasks] = useState([
@@ -18,6 +23,16 @@ const App = () => {
       completed: true,
     }
   ]);
+
+  // explanations about useEffect in my types archive.
+  useEffect(() => {
+      const fechTasks = async () => {
+        const {data: response} = await axios.get("https://jsonplaceholder.cypress.io/todos?_limit=10")
+        setTasks(response);
+      };
+      fechTasks();
+    }, []
+  )
 
   const handleTaskClick = (taskId) => {
     const newTasks = tasks_var.map((cada_task) =>{
@@ -50,13 +65,34 @@ const App = () => {
   }
 
   return (
-    <React.Fragment>
-      <div id='my_div' className="container">
-      <Header/>
-        <AddTask addTask_atr={handleTaskAddition}/>
-        <Tasks_comp task_rmv_click={handleRemoveClick} tasks_atr={tasks_var} task_arg_click={handleTaskClick}/>
+    <Router>
+      <div id="my_div" className="container">
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <React.Fragment>
+                <AddTask addTask_atr={handleTaskAddition} />
+                <Tasks_comp
+                  task_rmv_click={handleRemoveClick}
+                  tasks_atr={tasks_var}
+                  task_arg_click={handleTaskClick}
+                />
+              </React.Fragment>
+            }
+          />
+          <Route 
+            path="/:taskTitle"
+            element={
+              <React.Fragment>
+                <TaskDetails/>
+              </React.Fragment>
+            }
+          />
+        </Routes>
       </div>
-    </React.Fragment>
+    </Router>
   );
 }
 

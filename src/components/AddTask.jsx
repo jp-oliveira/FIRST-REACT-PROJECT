@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Btn_add from './Button';
-import "./AddTask.css";
+import Btn from './Button';
+import "./style/AddTask.css";
 
 const AddTask = ( {addTask_atr}) => {
 
@@ -11,7 +11,7 @@ const AddTask = ( {addTask_atr}) => {
     }
 
     const handleAddTaskClick = () => {
-        if (inputData == ""){
+        if (inputData === ""){
             alert("Você não informou o nome da tarefa.")
         }
         else{
@@ -29,7 +29,7 @@ const AddTask = ( {addTask_atr}) => {
                 type="text"
             />
             <div className='add_task_button_container'>
-                <Btn_add fc_clique={handleAddTaskClick}>Adicionar uma nova tarefa</Btn_add>
+                <Btn fc_clique={handleAddTaskClick}>Adicionar uma nova tarefa</Btn>
             </div>
         </div> 
     );

@@ -1,9 +1,18 @@
 import React from "react";
 import {CgClose, CgInfo} from "react-icons/cg";
-import "./Task.css";
+import "./style/Task.css";
+import {useNavigate} from "react-router-dom";
 
 const Task = ({task_un, task_click, remove_click}) => {
 
+    const history = useNavigate();
+    const handleTaskDetailsClick = () => {
+        history(`/${task_un.title}`);
+    };
+
+    //Para voltar na página, você pode colocar (caso ainda esteja usando tipo const history = useNavigate(), você pode 
+    //escrever history(-1) para voltar a página. Mas recomendo que mude esse history para navigate)
+    
     return ( 
         <div className='task-container' style={task_un.completed ? {borderLeft: "6px solid chartreuse"} : {}}>
             
@@ -12,7 +21,7 @@ const Task = ({task_un, task_click, remove_click}) => {
             </div>
             
             <div className='buttons_container'>
-                <button className='btn_see_details'>
+                <button onClick={handleTaskDetailsClick} className='btn_see_details'>
                 <CgInfo />
                 </button>
                 <button onClick={() => remove_click(task_un.id)} className='btn_remove_task'>

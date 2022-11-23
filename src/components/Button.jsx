@@ -1,7 +1,7 @@
 import React from 'react';
-import "./Button.css"
+import "./style/Button.css"
 
-const Btn_add = ({ children, fc_clique}) => {
+const Btn = ({ children, fc_clique}) => {
     return ( 
         <button onClick={fc_clique} className='button_cls'>
             {children}
@@ -9,4 +9,4 @@ const Btn_add = ({ children, fc_clique}) => {
      ); 
 }
  
-export default Btn_add;
+export default Btn;
